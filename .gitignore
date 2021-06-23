@@ -1,0 +1,17 @@
+.env
+.envrc
+.vscode/
+__pycache__/
+/leaderboard/datasets/
+outputs/
+plots/
+/*.jsonl
+/*.csv
+/*.p
+.DS_Store
+*.swp
+*.lock
+multirun/
+data/
+*.pyc
+*.egg-info

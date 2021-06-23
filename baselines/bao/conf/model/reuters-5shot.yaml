@@ -1,0 +1,10 @@
+_target_: model.Bao
+word_vector: 'wiki.en.vec'
+wv_path: '~/.flex/bao'
+vocab_counter_path: '~/dev/s2-fewshot/outputs/train7-bao-5shot/reuters/saved-runs/vocab_counter.pk'
+idf_path: '~/dev/s2-fewshot/outputs/train7-bao-5shot/reuters/saved-runs/idf.pt'
+iwf_path: '~/dev/s2-fewshot/outputs/train7-bao-5shot/reuters/saved-runs/iwf.pt'
+ebd_path: '~/dev/s2-fewshot/outputs/train7-bao-5shot/reuters/saved-runs/16110100420489516/best.ebd'
+clf_path: '~/dev/s2-fewshot/outputs/train7-bao-5shot/reuters/saved-runs/16110100420489516/best.clf'
+avg_ebd_path: '~/dev/s2-fewshot/outputs/train7-bao-5shot/reuters/saved-runs/avg_ebd.pt'
+cuda: -1

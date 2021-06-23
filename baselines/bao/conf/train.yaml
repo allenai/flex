@@ -1,0 +1,74 @@
+# @package _global_
+dataset: amazon  # or: fewrel, huffpost, newsgroup, reuters
+challenge: text-classification-bao-5way-5shot-20k
+
+max_vectors: null
+
+
+auxiliary:
+bert: False
+bert_cache_dir: null
+classifier: r2d2
+clip_grad: null
+cnn_filter_sizes:
+  - 3
+  - 4
+  - 5
+cnn_num_filters: 50
+cuda: 0
+data_path: 'data/reuters.json'
+# dataset: 'reuters'
+dropout: 0.1
+embedding: 'meta'
+finetune_ebd: False
+finetune_episodes: 10
+finetune_loss_type: 'softmax'
+finetune_maxepochs: 5000
+finetune_split: 0.8
+induct_att_dim: 64
+induct_hidden_dim: 100
+induct_iter: 3
+induct_rnn_dim: 128
+lr: 0.001
+lrd2_num_iters: 5
+maml: False
+maml_batchsize: 10
+maml_firstorder: False
+maml_innersteps: 10
+maml_stepsize: 0.1
+meta_ebd: False
+meta_idf: False
+meta_iwf: True
+meta_target_entropy: False
+meta_w_target: True
+meta_w_target_lam: 1
+mlp_hidden:
+  - 300
+  - 5
+mode: 'train'
+n_test_class: 11
+n_train_class: 15
+n_val_class: 5
+n_workers: 10
+nn_distance: 'l2'
+notqdm: False
+patience: 20
+pos_ebd_dim: 5
+pos_max_len: 40
+pretrained_bert: None
+proto_hidden:
+  - 300
+  - 300
+query: 25
+result_path: ''
+save: True
+seed: 330
+shot: 1
+snapshot: ''
+test_episodes: 1000
+train_episodes: 100
+train_epochs: 1000
+val_episodes: 100
+way: 5
+word_vector: 'wiki.en.vec'
+wv_path: './'

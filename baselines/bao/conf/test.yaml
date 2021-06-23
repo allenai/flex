@@ -1,0 +1,19 @@
+# @package _global_
+defaults:
+  - ./train  # include train.yaml args
+  - model: amazon-1shot
+
+challenge: text-classification-bao-5way-5shot-20k
+ignore_verification: false
+
+hydra:
+  job:
+    config:
+      override_dirname:
+        exclude_keys:
+          - challenge
+  sweep:
+    dir: outputs/eval/${challenge}
+    subdir: ${hydra.job.override_dirname}
+  run:
+    dir: outputs/eval/${challenge}/${hydra.job.override_dirname}

@@ -1,0 +1,10 @@
+_target_: model.Bao
+word_vector: 'wiki.en.vec'
+wv_path: '~/.flex/bao'
+vocab_counter_path: '~/dev/s2-fewshot/outputs/train7-bao-5shot/newsgroup/saved-runs/vocab_counter.pk'
+idf_path: '~/dev/s2-fewshot/outputs/train7-bao-5shot/newsgroup/saved-runs/idf.pt'
+iwf_path: '~/dev/s2-fewshot/outputs/train7-bao-5shot/newsgroup/saved-runs/iwf.pt'
+ebd_path: '~/dev/s2-fewshot/outputs/train7-bao-5shot/newsgroup/saved-runs/16110092590913768/best.ebd'
+clf_path: '~/dev/s2-fewshot/outputs/train7-bao-5shot/newsgroup/saved-runs/16110092590913768/best.clf'
+avg_ebd_path: '~/dev/s2-fewshot/outputs/train7-bao-5shot/newsgroup/saved-runs/avg_ebd.pt'
+cuda: -1
