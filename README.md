@@ -15,7 +15,7 @@ Leaderboard (coming soon): <https://leaderboard.allenai.org/flex>
 ## Installation
 
 - Clone the repository
-- Create a Python 3 environment (3.7 or greater), eg using `conda create --name flex python=3`
+- Create a Python 3 environment (3.7 or greater), eg using `conda create --name flex python=3.9`
 - Activate the environment
 - Install the package locally with `pip install -e .`
 
