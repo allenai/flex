@@ -4,10 +4,10 @@ import click
 import numpy as np
 from scipy.stats import sem
 import pandas as pd
-from seaborn.algorithms import bootstrap
-from seaborn.utils import ci
+from fewshot.bootstrap import bootstrap
+from fewshot.bootstrap import ci
 from fewshot.challenges.utils import get_gold_dataset
-from .plot import _score_one_method
+from . import score_utils as su
 
 
 def statistics(a, estimator=np.mean, conf_interval=95, n_boot=1000, seed=0):
@@ -59,11 +59,11 @@ def score(
 ):
     """Score a predictions.json file."""
     gold_data = pd.DataFrame(get_gold_dataset(challenge_name))
-    df, metrics = _score_one_method(
+    joined_data = su.join_predictions_and_gold(
         predictions=predictions,
         gold_data=gold_data,
-        distractors_sample_weight=0,
     )
+    df, metrics = su.score_joined_data(data=joined_data)
     if by_way_shot:
         df['shot'] = df.apply(lambda row: str(int(row['n_train'] / row['way']))
                               if row['balanced_train'] else '', axis=1)

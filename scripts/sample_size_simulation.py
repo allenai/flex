@@ -7,12 +7,10 @@ Simulates bootstrap CIs to compute coverage & width for sample size simulations.
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
-from seaborn.algorithms import bootstrap
-from seaborn.utils import ci
+from fewshot.bootstrap import bootstrap, ci
 import random
 
 import multiprocessing
-
 
 
 def get_test_examples_given_budget_hours(budget_hours: float, n_episodes: int) -> int:
@@ -61,7 +59,8 @@ for acc in tqdm(PROBS_OF_CORRECT_ANSWER):
     for n_episodes in tqdm(EPISODES):
         for budget_hours in tqdm(BUDGET_HOURS, leave=False):
             budget_in_seconds = budget_hours * 60 * 60
-            n_test_examples = get_test_examples_given_budget_hours(budget_hours=budget_in_seconds, n_episodes=n_episodes)
+            n_test_examples = get_test_examples_given_budget_hours(
+                budget_hours=budget_in_seconds, n_episodes=n_episodes)
 
             # given a small enough budget, basically Dtest < 1.  In this case, don't even bother w/ simulation.
             if n_test_examples < 1:
@@ -91,5 +90,6 @@ with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as mp:
     plot_results = mp.map(do_work, batches)
 
 
-all_df = pd.DataFrame(plot_results, columns=['acc', 'budget_hours', 'n_episodes', 'n_test_examples', 'ci_correctness', 'ci_width', 'mean_bias', 'mean2_bias'])
+all_df = pd.DataFrame(plot_results, columns=['acc', 'budget_hours', 'n_episodes',
+                      'n_test_examples', 'ci_correctness', 'ci_width', 'mean_bias', 'mean2_bias'])
 all_df.to_csv(f'episodes_vs_test_examples_1000_noise_05.csv', index=False)
