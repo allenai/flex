@@ -118,3 +118,8 @@ class BaoTestCfg(DefaultSamplerCfg):
     max_num_target_samples: int = 40
     way: int = 5
     prob_balanced: float = 1.0
+
+
+@dataclass
+class UnifewTrainCfg(Sample5Way5ShotCfg):
+    min_way: int = 2

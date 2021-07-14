@@ -1,6 +1,6 @@
 # @package _global_
 dataset: amazon  # or: fewrel, huffpost, newsgroup, reuters
-challenge: text-classification-bao-5way-5shot-20k
+challenge: bao
 
 max_vectors: null
 

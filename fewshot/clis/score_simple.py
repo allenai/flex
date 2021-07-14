@@ -1,3 +1,4 @@
+import json
 from typing import TextIO
 from functools import partial
 import click
@@ -114,7 +115,19 @@ def score(
         res = res['accuracy']
         print(type(res))
     if output:
-        if output.name.endswith('.json'):
+        if for_leaderboard:
+            # Add episode-level accuracy values under 'episode_accuracies' key
+            res = json.loads(res.to_json())
+            grouped = (
+                df.groupby(by=['few', 'dataset'])[['task_id', 'accuracy']]
+                .apply(lambda x: x.sort_values('task_id')['accuracy'].tolist())
+                .reset_index(name='accuracies')
+            )
+            grouped['few_string'] = grouped['few'].map(lambda v: 'few' if v else '0')
+            grouped['name'] = grouped['dataset'] + '-' + grouped['few_string']
+            res['episode_accuracies'] = grouped.set_index('name')[['accuracies']].to_dict()['accuracies']
+            json.dump(res, output)
+        elif output.name.endswith('.json'):
             res.to_json(output)
         else:
             res.to_csv(output)

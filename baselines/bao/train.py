@@ -94,8 +94,8 @@ def _convert_data(datas, args):
 def load_dataset(args):
     tprint('Loading data')
     challenge = fewshot.get_challenge_spec(args.challenge)
-    train_data = hydra.utils.instantiate(challenge.train_stores[args.dataset])
-    val_data = hydra.utils.instantiate(challenge.val_stores[args.dataset])
+    train_data = challenge.get_stores('train')[args.dataset]
+    val_data = challenge.get_stores('val')[args.dataset]
     # TODO: Remove since looking at test data during training is unfair. Here because Bao et al use it for vocab during training.
     test_data = hydra.utils.instantiate(test_datasets[args.dataset])
     train_data, val_data, test_data = _convert_data([train_data, val_data, test_data], args)

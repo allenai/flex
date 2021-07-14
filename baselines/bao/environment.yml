@@ -1,0 +1,14 @@
+channels:
+  - pytorch
+dependencies:
+  - python=3.7
+  - pytorch=1.2.0
+  - torchtext=0.4.0
+  - termcolor=1.1.0
+  - pip
+  - pip:
+    - tqdm==4.61.2
+    - transformers==3.4.0
+    - spacy==2.3.5
+    - numpy==1.21.0
+    - hydra-core==1.1.0

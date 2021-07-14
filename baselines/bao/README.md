@@ -21,9 +21,13 @@ The `bao/` subdirectory was adapted from <https://github.com/YujiaBao/Distributi
 Default parameters used by [Hydra](https://hydra.cc) are set in `conf/bao.yaml`.
 
 ## Installation
-After following the main installation instructions `/README.md`, from this directory run:
-- `pip install -r requirements.txt`
-- `python -m spacy download en`
+- Clone the main repo
+- Download and install Miniconda
+- Change to this directory
+- Create the `bao` virtual environment: `conda env create -n bao -f environment.yml`
+- Activate the virtual environment: `conda activate bao`
+- Install the fewshot package: `pip install -e ../../`
+- Download the spacy package data: `python -m spacy download en`
 
 ## Training
 

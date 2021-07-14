@@ -3,7 +3,7 @@ defaults:
   - ./train  # include train.yaml args
   - model: amazon-1shot
 
-challenge: text-classification-bao-5way-5shot-20k
+challenge: bao
 ignore_verification: false
 
 hydra:
