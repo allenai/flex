@@ -102,15 +102,20 @@ def score(
         res['few_string'] = res['few'].map(lambda v: 'few' if v else '0')
         res['name'] = res['dataset'] + '-' + res['few_string']
         accuracies = res[res.stat == 'stat']
+        overall_0_acc = accuracies[~accuracies.few]['accuracy'].mean()
+        overall_few_acc = accuracies[accuracies.few]['accuracy'].mean()
         accuracies = accuracies.append([
-            {'name': 'overall-0', 'accuracy': accuracies[~accuracies.few]['accuracy'].mean()},
-            {'name': 'overall-few', 'accuracy': accuracies[accuracies.few]['accuracy'].mean()}
+            {'name': 'overall-0', 'accuracy': overall_0_acc},
+            {'name': 'overall-few', 'accuracy': overall_few_acc},
+            {'name': 'overall', 'accuracy': 0.5 * (overall_0_acc + overall_few_acc)},
         ])
         uppers = res[res.stat == 'stat_ci_upper']
         uppers = uppers.assign(name=lambda x: x['name'] + '_ci_upper')
         lowers = res[res.stat == 'stat_ci_lower']
         lowers = lowers.assign(name=lambda x: x['name'] + '_ci_lower')
-        res = pd.concat([accuracies, uppers, lowers], axis=0)
+        stds = res[res.stat == 'std']
+        stds = stds.assign(name=lambda x: x['name'] + '_std')
+        res = pd.concat([accuracies, uppers, lowers, stds], axis=0)
         res = res[['name', 'accuracy']].set_index('name')
         res = res['accuracy']
         print(type(res))

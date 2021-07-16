@@ -8,18 +8,23 @@ FLEX enables:
 - Extensible benchmark creation (benchmarks defined using [HuggingFace Datasets](https://huggingface.co/datasets))
 - Advanced sampling functions for creating episodes with class imbalance, etc.
 
-For more context, see our paper (appearing on Arxiv shortly).
+For more context, see our [arXiv preprint](https://arxiv.org/pdf/2107.07170.pdf).
 
-**Leaderboards (coming soon)**
+Together with FLEX, we also released a simple yet strong few-shot model called [UniFew](https://github.com/allenai/unifew). For more details, see our [preprint](https://arxiv.org/pdf/2107.07170.pdf).
+## Leaderboards
+
+These instructions are geared towards users of the first benchmark created with this framework. The benchmark has two leaderboards, for the _Pretraining-Only_ and _Meta-Trained_ protocols described in [Section 4.2 of our paper](https://arxiv.org/pdf/2107.07170.pdf):
+- [FLEX](https://leaderboard.allenai.org/flex) (Pretraining-Only): for models that do **not** use meta-training data related to the test tasks (do _not_ follow the Model Training section below).
+- [FLEX-META](https://leaderboard.allenai.org/flex_meta) (Meta-Trained): for models that use _only_ the provided meta-training and meta-validation data (please _do_ see the Model Training section below).
 
 ## Installation
 
-- Clone the repository `git clone git@github.com:allenai/flex.git`
+- Clone the repository: `git clone git@github.com:allenai/flex.git`
 - Create a Python 3 environment (3.7 or greater), eg using `conda create --name flex python=3.9`
-- Activate the environment `conda activate flex`
+- Activate the environment: `conda activate flex`
 - Install the package locally with `pip install -e .`
 
-## Data preparation
+## Data Preparation
 
 Creating the data for the flex challenge for the first time takes about 10 minutes (using a recent Macbook Pro on a broadband connection) and requires 3GB of disk space.
 You can initiate this process by running
@@ -31,7 +36,7 @@ You can control the location of the cached data by setting the environment varia
 If you have not set this variable, the location should default to `~/.cache/huggingface/datasets/`.
 See the [HuggingFace docs](https://huggingface.co/docs/datasets/installation.html#caching-datasets-and-metrics) for more details.
 
-## Model evaluation
+## Model Evaluation
 
 "Challenges" are datasets of sampled tasks for evaluation. They are defined in `fewshot/challenges/__init__.py`.
 
@@ -82,7 +87,7 @@ Running the above script produces `/path/to/predictions.json` with contents form
 ```
 Each `[QUESTION_ID]` is an ID for a test example in a few-shot problem.
 
-### [Optional] Parallelizing evaluation
+### [Optional] Parallelizing Evaluation
 Two options are available for parallelizing evaluation.
 
 First, one can restrict evaluation to a subset of tasks with indices from `[START]` to `[STOP]` (exclusive) via
@@ -99,7 +104,7 @@ The second option will call your model's `.fit_and_predict()` method with batche
 evaluator.save_model_predictions(model=model, batched=True, batch_size=[BATCH_SIZE])
 ```
 
-## Result validation and scoring
+## Result Validation and Scoring
 
 To validate the contents of your predictions, run:
 
@@ -107,9 +112,9 @@ To validate the contents of your predictions, run:
 
 This validates all the inputs and takes some time. Substitute `flex` for another challenge to evaluate on a different challenge.
 
-There is also a `score` CLI command which should not be used on the final challenge except when reporting final results.
+(There is also a `score` CLI command which should not be used on the final challenge except when reporting final results.)
 
-## Model training
+## Model Training
 
 For the meta-training protocol (e.g., the [FLEX-META leaderboard](https://leaderboard.allenai.org/flex_meta)), challenges come with a set of related training and validation data.
 This data is most easily accessible in one of two formats:
@@ -123,9 +128,23 @@ Two examples of these respective approaches are available at:
 2. The `baselines/bao/` directory, for training and evaluating the approach described in the following paper:
 > Yujia Bao*, Menghua Wu*, Shiyu Chang, and Regina Barzilay. Few-shot Text Classification with Distributional Signatures. In International Conference on Learning Representations 2020
 
-## Benchmark construction and optimization
+## Benchmark Construction and Optimization
 
 To add a new benchmark (challenge) named `[NEW_CHALLENGE]`, you must edit `fewshot/challenges/__init__.py` or otherwise add it to the registry.
 The above usage instructions would change to substitute `[NEW_CHALLENGE]` in place of `flex` when calling `fewshot.get_challenge_spec('[NEW_CHALLENGE]')` and `fewshot.make_challenge('[NEW_CHALLENGE]')`.
 
 For an example of how to optimize the sample size of the challenge, see `scripts/README-sample-size.md`.
+
+# Attribution
+
+If you make use of our framework, benchmark, or model, please cite our [preprint](https://arxiv.org/abs/2107.07170):
+```
+@misc{bragg2021flex,
+      title={FLEX: Unifying Evaluation for Few-Shot NLP},
+      author={Jonathan Bragg and Arman Cohan and Kyle Lo and Iz Beltagy},
+      year={2021},
+      eprint={2107.07170},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+```
