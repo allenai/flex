@@ -125,7 +125,7 @@ This data is most easily accessible in one of two formats:
 2. **Raw dataset stores.** This option is for directly accessing the raw data. `fewshot.get_challenge_spec('flex').get_stores(split='[SPLIT'])` returns a mapping from dataset names to `fewshot.datasets.store.Store` instances. Each `Store` instance has a `Store.store` attribute containing a raw [HuggingFace Dataset](https://huggingface.co/docs/datasets/exploring.html) instance. The `Store` instance has a `Store.label` attribute with the Dataset object key for accessing the target label (e.g., via `Store.store[Store.label]`) and the FLEX-formatted text available at the `flex.txt` key (e.g., via `Store.store['flex.txt']`).
 
 Two examples of these respective approaches are available at:
-1. The [UniFew model repository](https://github.com/allenai/unifew). For more details on Unifew, see also the FLEX Arxiv paper.
+1. The [UniFew model repository](https://github.com/allenai/unifew). For more details on Unifew, see also the FLEX NeurIPS 2021 paper.
 2. The `baselines/bao/` directory, for training and evaluating the approach described in the following paper:
 > Yujia Bao*, Menghua Wu*, Shiyu Chang, and Regina Barzilay. Few-shot Text Classification with Distributional Signatures. In International Conference on Learning Representations 2020
 
