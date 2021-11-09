@@ -8,9 +8,10 @@ FLEX enables:
 - Extensible benchmark creation (benchmarks defined using [HuggingFace Datasets](https://huggingface.co/datasets))
 - Advanced sampling functions for creating episodes with class imbalance, etc.
 
-For more context, see our [arXiv preprint](https://arxiv.org/pdf/2107.07170.pdf).
+Together with FLEX, we also released a simple yet strong few-shot model called [UniFew](https://github.com/allenai/unifew).
 
-Together with FLEX, we also released a simple yet strong few-shot model called [UniFew](https://github.com/allenai/unifew). For more details, see our [preprint](https://arxiv.org/pdf/2107.07170.pdf).
+For more context and details, see our NeurIPS 2021 paper: [FLEX: Unifying Evaluation for Few-Shot NLP](https://arxiv.org/pdf/2107.07170.pdf).
+
 ## Leaderboards
 
 These instructions are geared towards users of the first benchmark created with this framework. The benchmark has two leaderboards, for the _Pretraining-Only_ and _Meta-Trained_ protocols described in [Section 4.2 of our paper](https://arxiv.org/pdf/2107.07170.pdf):
@@ -137,14 +138,12 @@ For an example of how to optimize the sample size of the challenge, see `scripts
 
 # Attribution
 
-If you make use of our framework, benchmark, or model, please cite our [preprint](https://arxiv.org/abs/2107.07170):
+If you make use of our framework, benchmark, or model, please cite our [NeurIPS 2021 paper](https://arxiv.org/abs/2107.07170):
 ```
-@misc{bragg2021flex,
+@inproceedings{bragg2021flex,
       title={FLEX: Unifying Evaluation for Few-Shot NLP},
       author={Jonathan Bragg and Arman Cohan and Kyle Lo and Iz Beltagy},
       year={2021},
-      eprint={2107.07170},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+      booktitle={NeurIPS 2021}
 }
 ```
