@@ -36,6 +36,7 @@ class ConllCfg(StoreCfg):
     ))
     formatter: str = 'fewshot.formatters.conll_batched'
     batched_formatter: bool = True
+    script_version: str = '1.18.0'
 
 
 @dataclass
