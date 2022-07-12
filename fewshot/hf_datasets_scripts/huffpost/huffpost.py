@@ -3,7 +3,7 @@ import json
 import datasets
 
 
-_URL = 'https://www.researchgate.net/profile/Rishabh-Misra/publication/332141218_News_Category_Dataset/data/5ca2da43a6fdccab2f67c89b/News-Category-Dataset-v2.json'
+_URL = 'https://huggingface.co/datasets/Fraser/news-category-dataset/resolve/78519a9e29fbcd20102a23c95e6d92e51b0c24ba/News_Category_Dataset_v2.json'
 
 
 class HuffPost(datasets.GeneratorBasedBuilder):
