@@ -23,7 +23,7 @@ These instructions are geared towards users of the first benchmark created with 
 - Clone the repository: `git clone git@github.com:allenai/flex.git`
 - Create a Python 3 environment (3.7 or greater), eg using `conda create --name flex python=3.9`
 - Activate the environment: `conda activate flex`
-- Install the package locally with `pip install -e .`
+- Install the package locally with `pip install -r requirements.txt && pip install -e .`
 
 ## Data Preparation
 
